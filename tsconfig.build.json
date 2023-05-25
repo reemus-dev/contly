@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.common.json",
+  "files": [],
+  "exclude": [
+    "tests"
+  ],
+  "compilerOptions": {
+    "disableSourceOfProjectReferenceRedirect": true
+  },
+  "references": [
+    {"path": "packages/content/tsconfig.json"},
+    {"path": "packages/core/tsconfig.json"},
+    {"path": "packages/core-compat/tsconfig.json"},
+    {"path": "packages/nextjs/tsconfig.json"}
+  ]
+}
