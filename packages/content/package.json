@@ -1,5 +1,5 @@
 {
-  "name": "@conte/content",
+  "name": "@contly/content",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -13,8 +13,8 @@
     "clean": "shx rm -rf dist && shx rm -f tsconfig.tsbuildinfo"
   },
   "dependencies": {
-    "@conte/core": "workspace:*",
-    "@conte/core-compat": "workspace:*",
+    "@contly/core": "workspace:*",
+    "@contly/core-compat": "workspace:*",
     "chokidar": "3.5.3",
     "debug": "4.3.4",
     "exit-hook": "3.2.0",

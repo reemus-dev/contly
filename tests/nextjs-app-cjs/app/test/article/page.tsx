@@ -1,7 +1,7 @@
 import Content from "@/content/article/test-article.mdx";
-import {Collection, CollectionSchemas, CollectionTypes} from "@conte/content";
+import {Collection, CollectionSchemas, CollectionTypes} from "@contly/content";
 
-// import {Asshole, CollectionSchemas, CollectionTypes} from "@conte/content:types";
+// import {Asshole, CollectionSchemas, CollectionTypes} from "@contly/content:types";
 
 type T = CollectionTypes;
 type B = CollectionSchemas["article"];

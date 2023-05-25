@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env DEBUG_HIDE_DATE=true DEBUG=conte* conte-next dev -p 3100",
-    "build": "cross-env DEBUG_HIDE_DATE=true DEBUG=conte* conte-next build",
+    "dev": "cross-env DEBUG_HIDE_DATE=true DEBUG=contly* contly-next dev -p 3100",
+    "build": "cross-env DEBUG_HIDE_DATE=true DEBUG=contly* contly-next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@conte/content": "workspace:*",
-    "@conte/nextjs": "workspace:*",
+    "@contly/content": "workspace:*",
+    "@contly/nextjs": "workspace:*",
     "@mdx-js/loader": "2.3.0",
     "@mdx-js/mdx": "2.3.0",
     "@mdx-js/react": "2.3.0",

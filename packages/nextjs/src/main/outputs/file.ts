@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import {getConfig} from "@conte/core";
+import {getConfig} from "@contly/core";
 import {FileOutputs} from "../../types.js";
 
 export const outputsGet = async (): Promise<FileOutputs> => {

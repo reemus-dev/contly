@@ -49,10 +49,10 @@ importers:
 
   packages/content:
     dependencies:
-      '@conte/core':
+      '@contly/core':
         specifier: workspace:*
         version: link:../core
-      '@conte/core-compat':
+      '@contly/core-compat':
         specifier: workspace:*
         version: link:../core-compat
       chokidar:
@@ -119,7 +119,7 @@ importers:
 
   packages/core:
     dependencies:
-      '@conte/core-compat':
+      '@contly/core-compat':
         specifier: workspace:*
         version: link:../core-compat
       chokidar:
@@ -198,13 +198,13 @@ importers:
 
   packages/nextjs:
     dependencies:
-      '@conte/content':
+      '@contly/content':
         specifier: workspace:*
         version: link:../content
-      '@conte/core':
+      '@contly/core':
         specifier: workspace:*
         version: link:../core
-      '@conte/core-compat':
+      '@contly/core-compat':
         specifier: workspace:*
         version: link:../core-compat
       chokidar:
@@ -268,10 +268,10 @@ importers:
 
   tests/nextjs-app-cjs:
     dependencies:
-      '@conte/content':
+      '@contly/content':
         specifier: workspace:*
         version: link:../../packages/content
-      '@conte/nextjs':
+      '@contly/nextjs':
         specifier: workspace:*
         version: link:../../packages/nextjs
       '@mdx-js/loader':
@@ -335,10 +335,10 @@ importers:
 
   tests/nextjs-app-esm:
     dependencies:
-      '@conte/content':
+      '@contly/content':
         specifier: workspace:*
         version: link:../../packages/content
-      '@conte/nextjs':
+      '@contly/nextjs':
         specifier: workspace:*
         version: link:../../packages/nextjs
       '@mdx-js/loader':

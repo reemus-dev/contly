@@ -1,5 +1,5 @@
 import {GrayMatterFile} from "gray-matter";
-import {CollectionSchemas, CollectionTypes} from "@conte/core:types";
+import {CollectionSchemas, CollectionTypes} from "@contly/core:types";
 
 /* File types */
 export type HeadingDepth = {

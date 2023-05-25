@@ -1,4 +1,7 @@
-import {Collection, CollectionFile} from "@conte/core";
+import {Collection, CollectionFile} from "@contly/core";
 
+/* Export user facing components */
 export {Collection, CollectionFile};
-export type * from "@conte/core";
+
+/* Export all types */
+export type * from "@contly/core";

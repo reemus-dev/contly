@@ -2,7 +2,7 @@
 import fs from "fs-extra";
 import child from "node:child_process";
 import os from "node:os";
-import {pathResolve} from "@conte/core";
+import {pathResolve} from "@contly/core";
 
 const getNextBin = async (cwd: string) => {
   let binPath = pathResolve(cwd, `node_modules/.bin/next`);

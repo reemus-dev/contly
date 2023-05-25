@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import fs from "fs-extra";
-import {getConfig, processExit} from "@conte/core";
+import {getConfig, processExit} from "@contly/core";
 import {getProcessLock} from "../main/lock.js";
 import {outputPages, outputPagesWatch} from "../main/outputs/generate-pages.js";
 import {outputTypes} from "../main/outputs/generate-types.js";

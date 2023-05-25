@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import crypto from "node:crypto";
 import path from "node:path";
-import {normalizePath} from "@conte/core-compat";
+import {normalizePath} from "@contly/core-compat";
 
 const _AsyncFunction = async () => {};
 export const AsyncFunction = Object.getPrototypeOf(_AsyncFunction).constructor;

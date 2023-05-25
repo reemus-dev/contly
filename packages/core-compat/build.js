@@ -12,7 +12,7 @@ const options = (entry, format) => {
     bundle: true,
     platform: "node",
     format: format,
-    outfile: `dist/conte-compat-${format}.${extension}`,
+    outfile: `dist/contly-compat-${format}.${extension}`,
   };
 };
 const bundle = async (entry, format) => {
@@ -25,7 +25,7 @@ const watch = async (entry, format) => {
 };
 
 const typesFile = path.resolve(process.cwd(), `dist/esm/index.d.ts`);
-const typesFileDest = path.resolve(process.cwd(), `dist/conte-compat-esm.d.ts`);
+const typesFileDest = path.resolve(process.cwd(), `dist/contly-compat-esm.d.ts`);
 const typesWrite = async () => {
   await fs.writeFile(typesFileDest, `export * from "./esm/index.js";`);
   // if (await fs.pathExists(typesFile)) {

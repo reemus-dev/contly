@@ -1,7 +1,7 @@
 import React from "react";
 import {notFound} from "next/navigation";
 import {AsyncComponent} from "@/components/AsyncComponent";
-import {Collection} from "@conte/content";
+import {Collection} from "@contly/content";
 
 export const ArticlePage = AsyncComponent(
   async (props: {slug: string; children: React.ReactNode}) => {

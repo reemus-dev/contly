@@ -1,14 +1,14 @@
 {
-  "name": "@conte/core-compat",
+  "name": "@contly/core-compat",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "./dist/conte-compat-cjs.cjs",
-  "module": "./dist/conte-compat-esm.js",
-  "types": "./dist/conte-compat-esm.d.ts",
+  "main": "./dist/contly-compat-cjs.cjs",
+  "module": "./dist/contly-compat-esm.js",
+  "types": "./dist/contly-compat-esm.d.ts",
   "exports": {
-    "require": "./dist/conte-compat-cjs.cjs",
-    "import": "./dist/conte-compat-esm.js"
+    "require": "./dist/contly-compat-cjs.cjs",
+    "import": "./dist/contly-compat-esm.js"
   },
   "scripts": {
     "clean": "shx rm -rf ../module/dist && shx rm -f tsconfig.tsbuildinfo",

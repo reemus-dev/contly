@@ -1,5 +1,5 @@
 import {UnknownKeysParam, ZodObject, ZodRawShape, ZodTypeAny, z} from "zod";
-import {CollectionSchemas, CollectionTypes} from "@conte/core:types";
+import {CollectionSchemas, CollectionTypes} from "@contly/core:types";
 import {ConfigPaths} from "./paths.js";
 
 type ZodSchema = ZodObject<ZodRawShape, UnknownKeysParam, ZodTypeAny, unknown, unknown>;

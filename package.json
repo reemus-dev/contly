@@ -1,5 +1,5 @@
 {
-  "name": "conte",
+  "name": "contly",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -15,7 +15,7 @@
     "pkgs:build:tsp": "pnpm exec tsc --build --verbose --watch tsconfig.build.json --preserveWatchOutput",
     "pkgs:build": "concurrently -k -n pkg,ts \"pnpm pkgs:build:watch\" \"pnpm pkgs:build:ts\"",
     "pkgs:build:clean": "pnpm pkgs:clean && pnpm pkgs:build",
-    "tests:nextjs:dev": "pnpm -r --filter \"nextjs-*\" --parallel run dev",
+    "test": "pnpm -r --filter \"nextjs-*\" --parallel run dev",
     "postinstall": "pnpm exec syncpack format"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 {
-  "name": "@conte/core",
+  "name": "@contly/core",
   "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
@@ -11,7 +11,7 @@
     "clean": "shx rm -rf dist && shx rm -f tsconfig.tsbuildinfo"
   },
   "dependencies": {
-    "@conte/core-compat": "workspace:*",
+    "@contly/core-compat": "workspace:*",
     "chokidar": "3.5.3",
     "debug": "4.3.4",
     "exit-hook": "3.2.0",

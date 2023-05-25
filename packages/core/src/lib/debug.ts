@@ -3,7 +3,7 @@ import debug from "debug";
 type LoggerOutput = "stderr" | "stdout";
 
 const _createLogger = (name: string, output?: LoggerOutput) => {
-  const logger = debug(`conte:${name}`);
+  const logger = debug(`contly:${name}`);
   if (!output || output === "stdout") {
     logger.log = console.log.bind(console);
   }

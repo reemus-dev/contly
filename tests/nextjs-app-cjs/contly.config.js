@@ -1,5 +1,5 @@
-/** @type {import('@conte/nextjs').NextPluginConfigFn} */
-export default async (z) => ({
+/** @type {import('@contly/nextjs').NextPluginConfigFn} */
+module.exports = async (z) => ({
   collections: {
     article: {
       component: "@/components/ArticlePage",

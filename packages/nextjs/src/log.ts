@@ -1,4 +1,4 @@
-import {createPackageLoggers} from "@conte/core";
+import {createPackageLoggers} from "@contly/core";
 
 const {main, error, createLogger, createScopedLogger, createScopedLoggers} =
   createPackageLoggers("nextjs");

@@ -1,7 +1,7 @@
 import React from "react";
 import {notFound} from "next/navigation";
 import {AsyncComponent} from "@/components/AsyncComponent";
-import {Collection} from "@conte/content";
+import {Collection} from "@contly/content";
 
 export const ArticlePage = AsyncComponent(
   async (props: {type: "article"; slug: string; children: React.ReactNode}) => {
@@ -11,6 +11,7 @@ export const ArticlePage = AsyncComponent(
     if (!article) {
       return notFound();
     }
+
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <h1>{article.meta.title}</h1>

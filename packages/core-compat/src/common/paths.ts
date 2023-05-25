@@ -16,7 +16,7 @@ export const currentFilename = (): string => {
     .filter((name) => !name.includes("node:internal"))
     .filter((name) => !name.includes("node_modules"))
     // eslint-disable-next-line
-    .filter((name) => !name.includes("dist/conte-compat-"));
+    .filter((name) => !name.includes("dist/contly-compat-"));
 
   // console.log({fileURLs});
 

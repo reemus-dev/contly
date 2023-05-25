@@ -10,7 +10,7 @@ import {
   fileWrite,
   getConfig,
   pathResolve,
-} from "@conte/core";
+} from "@contly/core";
 import {createScopedLoggers, logger} from "../../log.js";
 import {outputsGet, outputsSave} from "./file.js";
 

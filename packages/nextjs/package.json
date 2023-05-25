@@ -1,5 +1,5 @@
 {
-  "name": "@conte/nextjs",
+  "name": "@contly/nextjs",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,15 +10,15 @@
     "dist"
   ],
   "bin": {
-    "conte-next": "dist/bin/index.js"
+    "contly-next": "dist/bin/index.js"
   },
   "scripts": {
     "clean": "shx rm -rf dist && shx rm -f tsconfig.tsbuildinfo"
   },
   "dependencies": {
-    "@conte/content": "workspace:*",
-    "@conte/core": "workspace:*",
-    "@conte/core-compat": "workspace:*",
+    "@contly/content": "workspace:*",
+    "@contly/core": "workspace:*",
+    "@contly/core-compat": "workspace:*",
     "chokidar": "3.5.3",
     "debug": "4.3.4",
     "exit-hook": "3.2.0",

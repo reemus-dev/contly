@@ -1,4 +1,4 @@
-import {ConfigFn} from "@conte/core";
+import {ConfigFn} from "@contly/core";
 
 export type FileOutputs = {
   collections: Record<

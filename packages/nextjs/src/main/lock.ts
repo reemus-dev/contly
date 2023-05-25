@@ -1,5 +1,5 @@
 import lockfile from "proper-lockfile";
-import {getConfig} from "@conte/core";
+import {getConfig} from "@contly/core";
 
 export const getProcessLock = async () => {
   const {paths} = await getConfig();

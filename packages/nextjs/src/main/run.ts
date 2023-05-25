@@ -3,7 +3,7 @@ import exitHook, {asyncExitHook} from "exit-hook";
 import prettier from "prettier";
 import {z} from "zod";
 import {printNode, zodToTs} from "zod-to-ts";
-import {consts, fileRead, fileWrite, getPaths} from "@conte/core";
+import {consts, fileRead, fileWrite, getPaths} from "@contly/core";
 import {NextPluginConfigFn} from "../types.js";
 import {getProcessLock} from "./lock.js";
 
@@ -81,7 +81,7 @@ declare module "mdxn:content" {
   await fileWrite(paths.files.types, prettier.format(output, {parser: "typescript"}));
 };
 
-const conte = async (options: NextPluginConfigFn<string>) => {
+const contly = async (options: NextPluginConfigFn<string>) => {
   const locked = await getProcessLock();
   if (!locked) return;
   // console.log("mdxkit-next", locked, process.pid);
@@ -93,5 +93,5 @@ const conte = async (options: NextPluginConfigFn<string>) => {
   await generateTypes(options);
 };
 
-export default conte;
+export default contly;
 */

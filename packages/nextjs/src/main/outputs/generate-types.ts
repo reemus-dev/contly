@@ -1,6 +1,6 @@
 import prettier from "prettier";
 import {printNode, zodToTs} from "zod-to-ts";
-import {consts, createDebounceQueue, fileWrite, getConfig} from "@conte/core";
+import {consts, createDebounceQueue, fileWrite, getConfig} from "@contly/core";
 import {createScopedLoggers} from "../../log.js";
 
 const log = createScopedLoggers("OutputTypes");
