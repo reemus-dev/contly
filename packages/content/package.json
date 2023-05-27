@@ -9,7 +9,6 @@
     "dist"
   ],
   "scripts": {
-    "build:watch": "node build.js",
     "clean": "shx rm -rf dist && shx rm -f tsconfig.tsbuildinfo"
   },
   "dependencies": {

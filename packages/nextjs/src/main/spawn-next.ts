@@ -34,7 +34,11 @@ export const spawnNext = async (params: {cwd: string; args: string[]}): Promise<
       console.error(`Next.js error:`, err);
     });
     proc.on("exit", (code) => {
-      reject(new Error(`Next.js process exited with code ${code}`));
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Next.js process exited with code ${code}`));
+      }
     });
   });
 };

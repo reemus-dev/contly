@@ -1,6 +1,6 @@
 /* Top-level exports */
 export * from "./consts.js";
-export * from "./types.js";
+export type * from "./types.js";
 
 /* Lib exports */
 export * from "./lib/async.js";

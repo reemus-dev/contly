@@ -7,6 +7,7 @@ export const ArticlePage = AsyncComponent(
   async (props: {type: "article"; slug: string; children: React.ReactNode}) => {
     const {type, slug, children} = props;
 
+    // const article = await Collection.get({type: "ass", slug});
     const article = await Collection.get({type, slug});
     if (!article) {
       return notFound();
