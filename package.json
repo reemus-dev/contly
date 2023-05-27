@@ -6,6 +6,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "cs:add": "changeset add",
+    "cs:version": "changeset version",
+    "publish": "pnpm publish -r",
     "clean:node_modules:root": "pnpm exec shx rm -rf node_modules",
     "clean:node_modules:pkgs": "pnpm -r exec shx rm -rf node_modules",
     "clean:node_modules": "pnpm clean:node_modules:pkgs && pnpm clean:node_modules:root",
