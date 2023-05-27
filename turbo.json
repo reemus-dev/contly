@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "tsconfig.build.json",
+    "tsconfig.common.json",
+    "eslint.shared.cjs",
+    "pnpm-lock.yaml",
+    ".prettierrc.cjs",
+    "pnpm-workspace.yaml",
+    "package.json",
+    ".npmrc"
+  ],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*",
+        "*.js",
+        "*.cjs",
+        "*.mjs",
+        "*.ts",
+        "*.json"
+      ],
+      "outputs": ["dist"]
+    },
+    "deploy": {
+      "dependsOn": ["build", "test", "lint"]
+    }
+  }
+}

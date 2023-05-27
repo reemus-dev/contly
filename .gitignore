@@ -7,8 +7,10 @@ node_modules/
 .pnp
 .pnp.js
 
-# Typescript
+# Building
+.turbo
 *.tsbuildinfo
+dist/
 
 # Testing
 coverage
@@ -27,12 +29,6 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
-
-### ----------------
-### --- Packages ---
-### ----------------
-
-dist/
 
 ### -----------------------
 ### --- Tests / Next.js ---

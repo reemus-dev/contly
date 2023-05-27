@@ -8,7 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "clean": "shx rm -rf dist && shx rm -f tsconfig.tsbuildinfo"
+    "clean": "shx rm -rf dist && shx rm -f tsconfig.tsbuildinfo",
+    "build": "tsc -b -i"
   },
   "dependencies": {
     "@contly/core": "workspace:*",

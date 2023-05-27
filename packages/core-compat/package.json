@@ -10,9 +10,9 @@
     "import": "./dist/contly-compat-esm.js"
   },
   "scripts": {
-    "clean": "shx rm -rf ../module/dist && shx rm -f tsconfig.tsbuildinfo",
-    "build:watch": "node build.js --watch",
-    "build": "node build.js"
+    "clean": "shx rm -rf dist && shx rm -f tsconfig.tsbuildinfo",
+    "build": "tsc -b -i && node build.js",
+    "dev": "node build.js --watch"
   },
   "dependencies": {},
   "devDependencies": {

@@ -45,7 +45,7 @@ if (isWatch) {
   await Promise.all([
     bundle("src/cjs/index.ts", "cjs"),
     bundle("src/esm/index.ts", "esm"),
-    typesWatch(),
+    typesWrite(),
   ]);
 }
 

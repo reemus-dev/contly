@@ -8,18 +8,17 @@
   "scripts": {
     "cs:add": "changeset add",
     "cs:version": "changeset version",
-    "publish": "pnpm publish -r",
-    "clean:node_modules:root": "pnpm exec shx rm -rf node_modules",
-    "clean:node_modules:pkgs": "pnpm -r exec shx rm -rf node_modules",
-    "clean:node_modules": "pnpm clean:node_modules:pkgs && pnpm clean:node_modules:root",
-    "pkgs:clean": "pnpm -r run clean",
-    "pkgs:build:watch": "pnpm -r run build:watch",
-    "pkgs:build:ts": "pnpm exec tsc --build --verbose --watch tsconfig.build.json",
-    "pkgs:build:tsp": "pnpm exec tsc --build --verbose --watch tsconfig.build.json --preserveWatchOutput",
-    "pkgs:build": "concurrently -k -n pkg,ts \"pnpm pkgs:build:watch\" \"pnpm pkgs:build:ts\"",
-    "pkgs:build:clean": "pnpm pkgs:clean && pnpm pkgs:build",
-    "test": "pnpm -r --filter \"nextjs-*\" --parallel run dev",
-    "postinstall": "pnpm exec syncpack format"
+    "clean": "pnpm -r run clean",
+    "clean:nm": "pnpm clean:node_modules:pkgs && pnpm clean:node_modules:root",
+    "clean:nm:root": "pnpm exec shx rm -rf node_modules",
+    "clean:nm:pkgs": "pnpm -r exec shx rm -rf node_modules",
+    "dev": "concurrently -k -n pkg,ts \"pnpm -r run dev\" \"pnpm dev:ts\"",
+    "dev:tsc": "pnpm exec tsc --build --verbose --watch tsconfig.build.json",
+    "dev:tsc:preserve": "pnpm exec tsc --build --verbose --watch tsconfig.build.json --preserveWatchOutput",
+    "build": "pnpm -r run clean && turbo run build --filter=@contly/*",
+    "pkgs:publish": "pnpm publish -r",
+    "postinstall": "pnpm exec syncpack format",
+    "test": "pnpm -r --filter \"nextjs-*\" --parallel run dev"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.1",
@@ -36,6 +35,7 @@
     "prettier-plugin-tailwindcss": "0.3.0",
     "shx": "0.3.4",
     "syncpack": "9.8.6",
+    "turbo": "1.9.9",
     "typescript": "5.0.4"
   },
   "syncpack": {
