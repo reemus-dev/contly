@@ -19,6 +19,7 @@
     "postinstall": "pnpm exec syncpack format"
   },
   "devDependencies": {
+    "@changesets/cli": "2.26.1",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/node": "20.1.4",
     "@typescript-eslint/eslint-plugin": "5.59.6",
