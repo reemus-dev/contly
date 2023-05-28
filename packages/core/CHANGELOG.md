@@ -1,5 +1,13 @@
 # @contly/core
 
+## 0.1.2
+
+### Patch Changes
+
+- cf01276: publish last commits
+- Updated dependencies [cf01276]
+  - @contly/core-compat@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
