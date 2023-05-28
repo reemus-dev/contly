@@ -1,11 +1,24 @@
 name: Release
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 on:
   push:
     branches:
       - main
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions:
+  actions: read
+  checks: write
+  contents: write
+  deployments: none
+  id-token: none
+  issues: write
+  discussions: none
+  packages: none
+  pages: none
+  pull-requests: write
+  repository-projects: none
+  security-events: none
+  statuses: write
 
 jobs:
   release:
