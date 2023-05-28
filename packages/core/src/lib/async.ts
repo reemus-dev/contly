@@ -1,9 +1,9 @@
 import _ from "lodash";
 import pQueue from "p-queue";
-import {logger} from "../internal/log.js";
+import {createScopedLoggers} from "../internal/log.js";
 import {sleep} from "./utils.js";
 
-const log = logger.createScopedLoggers("DebounceQueue");
+const log = createScopedLoggers("DebounceQueue");
 
 export const createDebounceQueue = <Args, Result>(process: (arg: Args) => Promise<Result>) => {
   // const queue = {
@@ -11,6 +11,8 @@ export const createDebounceQueue = <Args, Result>(process: (arg: Args) => Promis
   //   execute: new pQueue({concurrency: 1}),
   // };
   // const debounce = new pQueue({concurrency: 1});
+
+  type Invoke = (arg: Args) => Promise<Result | null>;
 
   const queue = new pQueue({
     concurrency: 1,
@@ -47,7 +49,7 @@ export const createDebounceQueue = <Args, Result>(process: (arg: Args) => Promis
     state.queued = false;
   };
 
-  const invoke = async (arg: Args): Promise<Result | null> => {
+  const invoke: Invoke = async (arg) => {
     try {
       count++;
       const i = count;
@@ -86,5 +88,5 @@ export const createDebounceQueue = <Args, Result>(process: (arg: Args) => Promis
     }
   };
 
-  return _.debounce(invoke, 100, {leading: true, trailing: true});
+  return _.debounce(invoke, 100, {leading: true, trailing: true}) as Invoke;
 };

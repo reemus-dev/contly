@@ -1,8 +1,24 @@
-import debug from "debug";
+import debug, {Debugger} from "debug";
 
-type LoggerOutput = "stderr" | "stdout";
+// Logger type taken from @types/debug
+// This is needed to avoid error "The inferred type of 'logger' cannot be named without a reference to"
+export type Logger = {
+  (formatter: any, ...args: any[]): void;
+  color: string;
+  diff: number;
+  enabled: boolean;
+  log: (...args: any[]) => any;
+  namespace: string;
+  destroy: () => boolean;
+  extend: (namespace: string, delimiter?: string) => Debugger;
+};
+export type LoggedScoped = (...args: any[]) => void;
+export type LoggerOutput = "stderr" | "stdout";
+export type LoggerCreate = (output: LoggerOutput, pkg: string, namespace?: string) => Logger;
+export type LoggerCreateScoped = (log: Logger, scope: string) => LoggedScoped;
 
-const _createLogger = (name: string, output?: LoggerOutput) => {
+export const createLogger: LoggerCreate = (output, pkg, namespace) => {
+  const name = namespace ? `${pkg}:${namespace}` : pkg;
   const logger = debug(`contly:${name}`);
   if (!output || output === "stdout") {
     logger.log = console.log.bind(console);
@@ -10,25 +26,21 @@ const _createLogger = (name: string, output?: LoggerOutput) => {
   return logger;
 };
 
+export const createLoggerScoped: LoggerCreateScoped = (log, scope) => {
+  return (...args) => log(`[${scope}]`, ...args);
+};
+
 export const createPackageLoggers = (pkg: string) => {
-  const createLogger = (namespace: string, output?: LoggerOutput) => {
-    if (!namespace) return _createLogger(pkg, output);
-    return _createLogger(`${pkg}:${namespace}`, output);
-  };
-
-  const main = createLogger(``, "stdout");
-  const error = createLogger(`error`);
-
-  const createScopedLogger = (log: debug.Debugger, scope: string) => {
-    return (...args: any[]) => log(`[${scope}]`, ...args);
-  };
+  const main = createLogger("stdout", pkg);
+  const error = createLogger(`stderr`, pkg, `error`);
+  const logger = {main, error};
 
   const createScopedLoggers = (scope: string) => {
     return {
-      main: createScopedLogger(main, scope),
-      error: createScopedLogger(error, scope),
+      main: createLoggerScoped(main, scope),
+      error: createLoggerScoped(error, scope),
     };
   };
 
-  return {createLogger, createScopedLogger, createScopedLoggers, main, error};
+  return {logger, createScopedLoggers};
 };

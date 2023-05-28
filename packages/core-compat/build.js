@@ -39,6 +39,7 @@ const typesWatch = async () => {
 };
 
 if (isWatch) {
+  await fs.ensureDir(path.resolve(process.cwd(), "dist"));
   await Promise.all([watch("src/cjs/index.ts", "cjs"), watch("src/esm/index.ts", "esm")]);
   await typesWrite();
 } else {

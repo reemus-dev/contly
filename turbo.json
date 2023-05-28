@@ -21,10 +21,7 @@
         "*.ts",
         "*.json"
       ],
-      "outputs": ["dist"]
-    },
-    "deploy": {
-      "dependsOn": ["build", "test", "lint"]
+      "outputs": ["dist/**"]
     }
   }
 }
