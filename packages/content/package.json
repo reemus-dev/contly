@@ -1,6 +1,6 @@
 {
   "name": "@contly/content",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,29 +12,9 @@
     "build": "tsc -b -i"
   },
   "dependencies": {
-    "@contly/core": "workspace:*",
-    "@contly/core-compat": "workspace:*",
-    "chokidar": "3.5.3",
-    "debug": "4.3.4",
-    "exit-hook": "3.2.0",
-    "fs-extra": "11.1.1",
-    "github-slugger": "2.0.0",
-    "gray-matter": "4.0.3",
-    "lodash": "4.17.21",
-    "prettier": "2.8.8",
-    "proper-lockfile": "4.1.2",
-    "tempy": "3.0.0",
-    "tslib": "2.5.0",
-    "zod": "3.21.4",
-    "zod-to-ts": "1.1.4"
+    "@contly/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/debug": "4.1.8",
-    "@types/fs-extra": "11.0.1",
-    "@types/lodash": "4.14.194",
-    "@types/prettier": "2.7.2",
-    "@types/proper-lockfile": "4.1.2",
-    "ts-toolbelt": "9.6.0",
     "typescript": "5.0.4"
   }
 }
