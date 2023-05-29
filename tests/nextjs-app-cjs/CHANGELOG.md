@@ -1,5 +1,13 @@
 # nextjs-cjs-app
 
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [199b41b]
+  - @contly/content@0.1.5
+  - @contly/nextjs@0.1.5
+
 ## 0.1.5
 
 ### Patch Changes
