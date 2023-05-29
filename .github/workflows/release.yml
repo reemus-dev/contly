@@ -113,7 +113,7 @@ jobs:
         uses: changesets/action@v1
         if: steps.changesets.outputs.pullRequestNumber > 0
         with:
-          publish: pnpm pkgs:publish
+          publish: pnpm pkgs:publish --publish-branch changeset-release/main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
