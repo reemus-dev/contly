@@ -1,5 +1,13 @@
 # nextjs-esm-app
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [cf01276]
+  - @contly/content@0.1.2
+  - @contly/nextjs@0.1.2
+
 ## 0.1.2
 
 ### Patch Changes
