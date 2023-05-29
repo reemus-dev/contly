@@ -1,14 +1,17 @@
 name: Release
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 on:
   push:
     branches:
       - main
-    paths:
-      - '.changeset/*.md'
-    tags-ignore:
-      - '**'
+    # paths:
+    #   - '.changeset/*.md'
+    # tags-ignore:
+    #   - '**'
 
 permissions:
   actions: read
@@ -27,11 +30,16 @@ permissions:
 
 jobs:
   release:
+    if: github.repository == 'reemus-dev/contly'
     name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate
+          # changelogs with the correct commits
+          fetch-depth: 0
 
       - id: install-pnpm
         uses: pnpm/action-setup@v2
@@ -58,18 +66,18 @@ jobs:
         name: Setup Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 18
           cache: "pnpm"
           cache-dependency-path: "pnpm-lock.yaml"
+          node-version: 18
 
-      - id: auth-npm
-        name: Create .npmrc to authenticate with npm
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - id: auth-npm
+      #   name: Create .npmrc to authenticate with npm
+      #   run: |
+      #     cat << EOF > "$HOME/.npmrc"
+      #       //registry.npmjs.org/:_authToken=$NPM_TOKEN
+      #     EOF
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - id: install
         name: Install dependencies
@@ -79,22 +87,55 @@ jobs:
         name: Build packages
         run: pnpm pkgs:build
 
-      - id: version
-        name: Run changeset version to bump packages and commit changes
-        run: pnpm pkgs:version
+      - id: changesets
+        name: Create Release Pull Request or Publish to npm
+        uses: changesets/action@v1
+        # with:
+        #   publish: pnpm pkgs:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - id: merge
+        name: Merge pull request
+        uses: actions/github-script@v6
+        if: steps.changesets.outputs.pullRequestNumber > 0
+        with:
+          script: |
+            const owner = "reemus-dev";
+            const repo = "contly";
+            const head = "changeset-release/main";
+            const pull_number = "${{ steps.changesets.outputs.pullRequestNumber }}"
+            await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: "squash"});
 
       - id: publish
-        name: Publish updated packages
-        run: pnpm pkgs:publish
+        name: Publish to npm
+        uses: changesets/action@v1
+        if: steps.changesets.outputs.pullRequestNumber > 0
+        with:
+          publish: pnpm pkgs:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # - id: version
+      #   name: Run changeset version to bump packages and commit changes
+      #   run: pnpm pkgs:version
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - id: publish
+      #   name: Publish updated packages
+      #   run: pnpm pkgs:publish
         # env:
         #   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - id: push
-        name: Push git tags
-        run: git push origin ${GITHUB_REF} --follow-tags
-        # run: git push --follow-tags origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - id: push
+      #   name: Push git tags
+      #   run: git push origin ${GITHUB_REF} --follow-tags
+      #   # run: git push --follow-tags origin main
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Create Release Pull Request or Publish to npm
       #   id: changesets
