@@ -1,5 +1,13 @@
 # @contly/core
 
+## 0.1.3
+
+### Patch Changes
+
+- 82cfcf4: test
+- Updated dependencies [82cfcf4]
+  - @contly/core-compat@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes

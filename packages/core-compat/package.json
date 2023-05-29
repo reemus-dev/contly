@@ -1,6 +1,6 @@
 {
   "name": "@contly/core-compat",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "main": "./dist/contly-compat-cjs.cjs",
   "module": "./dist/contly-compat-esm.js",
