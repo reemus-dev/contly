@@ -1,5 +1,11 @@
 # @contly/core-compat
 
+## 0.1.5
+
+### Patch Changes
+
+- 199b41b: test
+
 ## 0.1.4
 
 ### Patch Changes
