@@ -68,7 +68,8 @@ jobs:
         name: Create release pull request or publish to npm
         uses: changesets/action@v1
         with:
-          publish: pnpm pkgs:publish --publish-branch changeset-release/main
+          publish: pnpm pkgs:publish
+          # publish: pnpm pkgs:publish --publish-branch changeset-release/main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
