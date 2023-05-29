@@ -65,8 +65,10 @@ jobs:
         run: pnpm pkgs:build
 
       - id: changesets
-        name: Create release pull request
+        name: Create release pull request or publish to npm
         uses: changesets/action@v1
+        with:
+          publish: pnpm pkgs:publish --publish-branch changeset-release/main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -81,15 +83,15 @@ jobs:
             const repo = "contly";
             const head = "changeset-release/main";
             const pull_number = "${{ steps.changesets.outputs.pullRequestNumber }}"
-            await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: "squash"});
+            await github.rest.pulls.merge({ owner, repo, pull_number });
 
-      - id: publish
-        name: Publish to npm
-        uses: changesets/action@v1
-        if: steps.changesets.outputs.pullRequestNumber > 0
-        with:
-          publish: pnpm pkgs:publish --publish-branch changeset-release/main
-          createGithubReleases: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - id: publish
+      #   name: Publish to npm
+      #   uses: changesets/action@v1
+      #   if: steps.changesets.outputs.pullRequestNumber > 0
+      #   with:
+      #     publish: pnpm pkgs:publish --publish-branch changeset-release/main
+      #     createGithubReleases: true
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
