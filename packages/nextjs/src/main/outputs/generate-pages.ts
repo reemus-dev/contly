@@ -68,9 +68,21 @@ const collectionCreate = async (type: string, files: CollectionFileShape<string>
   for (const file of files) {
     const contentImportPath = file.file.path.replace(paths.root, "@");
     const {outputDir, outputFile} = collectionFilePath(collection, file);
+
+    const imports = collection.generateMetadata
+      ? `import ContentWrapper, {createGenerateMetadata} from "${component}";`
+      : `import ContentWrapper from "${component}";`;
+
+    const metadata = collection.generateMetadata
+      ? `\nconst generateMetadata = createGenerateMetadata({ type: "${type}", slug: "${file.slug}" });`
+      : ``;
+
+    const exports = collection.generateMetadata ? `export {generateMetadata};` : ``;
+
     const outputContent = `
         import React from "react";
-        import ContentWrapper from "${component}";
+        ${imports}
+        ${metadata}
         
         export default async function Page() {
           const {default: Content} = await import("${contentImportPath}");
@@ -80,6 +92,8 @@ const collectionCreate = async (type: string, files: CollectionFileShape<string>
             </ContentWrapper>
           );
         }
+        
+        ${exports}
       `;
     const outputFormatted = prettier.format(outputContent, {parser: "typescript"});
     await fs.ensureDir(outputDir);

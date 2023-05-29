@@ -6,6 +6,7 @@ type ZodSchema = ZodObject<ZodRawShape, UnknownKeysParam, ZodTypeAny, unknown, u
 
 export const zodConfigCollection = z.object({
   component: z.string().min(1),
+  generateMetadata: z.boolean().optional(),
   contentPath: z.string().min(1),
   outputPath: z.string().min(1),
   schema: z.instanceof(ZodObject),
