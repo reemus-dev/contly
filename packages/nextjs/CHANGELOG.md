@@ -1,5 +1,14 @@
 # @contly/nextjs
 
+## 0.1.9
+
+### Patch Changes
+
+- b4aee60: test
+- Updated dependencies [b4aee60]
+  - @contly/content@0.1.9
+  - @contly/core@0.1.9
+
 ## 0.1.8
 
 ### Patch Changes
