@@ -79,6 +79,7 @@ jobs:
         uses: actions/github-script@v6
         if: steps.changesets.outputs.pullRequestNumber > 0
         with:
+          github-token: ${{ secrets.GH_TARUN_PAT }}
           script: |
             const owner = "reemus-dev";
             const repo = "contly";
