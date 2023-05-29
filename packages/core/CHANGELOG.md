@@ -1,5 +1,13 @@
 # @contly/core
 
+## 0.1.7
+
+### Patch Changes
+
+- 9086d69: test
+- Updated dependencies [9086d69]
+  - @contly/core-compat@0.1.7
+
 ## 0.1.6
 
 ### Patch Changes

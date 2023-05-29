@@ -1,6 +1,6 @@
 {
   "name": "nextjs-cjs-app",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": true,
   "scripts": {
     "dev": "cross-env DEBUG_HIDE_DATE=true DEBUG=contly* contly-next dev -p 3100",
