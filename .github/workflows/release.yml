@@ -5,6 +5,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '.changeset/*.md'
+    tags-ignore:
+      - '**'
+
 permissions:
   actions: read
   checks: write
@@ -28,42 +33,74 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - id: pnpm-install
+      - id: install-pnpm
         uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
           version: 8.5.1
           run_install: false
 
-      - id: pnpm-cache
-        name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      # - id: pnpm-cache
+      #   name: Get pnpm store directory
+      #   shell: bash
+      #   run: |
+      #     echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      # - uses: actions/cache@v3
+      #   name: Setup pnpm cache
+      #   with:
+      #     path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+      #     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pnpm-store-
 
-      - name: Setup Node.js 18
+      - id: install-node
+        name: Setup Node.js 18
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "pnpm"
           cache-dependency-path: "pnpm-lock.yaml"
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm pkgs:publish
+      - id: auth-npm
+        name: Create .npmrc to authenticate with npm
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - id: install
+        name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - id: build
+        name: Build packages
+        run: pnpm pkgs:build
+
+      - id: version
+        name: Run changeset version to bump packages and commit changes
+        run: pnpm pkgs:version
+
+      - id: publish
+        name: Publish updated packages
+        run: pnpm pkgs:publish
+        # env:
+        #   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - id: push
+        name: Push git tags
+        run: git push origin ${GITHUB_REF} --follow-tags
+        # run: git push --follow-tags origin main
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Create Release Pull Request or Publish to npm
+      #   id: changesets
+      #   uses: changesets/action@v1
+      #   with:
+      #     publish: pnpm pkgs:publish
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -7,7 +7,6 @@
   "type": "module",
   "scripts": {
     "cs:add": "changeset add",
-    "cs:version": "changeset version",
     "nm:clean": "pnpm nm:clean:pkgs && pnpm nm:clean:root",
     "nm:clean:root": "pnpm exec rm -rf node_modules",
     "nm:clean:pkgs": "pnpm -r exec rm -rf node_modules",
@@ -16,7 +15,8 @@
     "dev:tscp": "pnpm exec tsc --build --verbose --watch tsconfig.build.json --preserveWatchOutput",
     "pkgs:clean": "pnpm -r run clean",
     "pkgs:build": "pnpm pkgs:clean && turbo run build --filter=@contly/* --no-daemon",
-    "pkgs:publish": "pnpm pkgs:build && pnpm publish -r",
+    "pkgs:version": "changeset version",
+    "pkgs:publish": "pnpm publish -r --filter=@contly/*",
     "postinstall": "pnpm exec syncpack format",
     "test": "pnpm -r --filter \"nextjs-*\" --parallel run dev"
   },
