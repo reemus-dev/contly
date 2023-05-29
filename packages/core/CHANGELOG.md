@@ -1,5 +1,13 @@
 # @contly/core
 
+## 0.1.11
+
+### Patch Changes
+
+- da1cabb: feat: generate metadata for pages
+- Updated dependencies [da1cabb]
+  - @contly/core-compat@0.1.11
+
 ## 0.1.10
 
 ### Patch Changes
