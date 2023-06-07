@@ -5,6 +5,7 @@ module.exports = {
   useTabs: false,
   bracketSpacing: false,
   plugins: [
+    require("prettier-plugin-tailwindcss"),
     require("@trivago/prettier-plugin-sort-imports"),
   ],
   // https://github.com/trivago/prettier-plugin-sort-imports
