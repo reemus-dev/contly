@@ -19,6 +19,7 @@
     "@contly/content": "workspace:*",
     "@contly/core": "workspace:*",
     "chokidar": "3.5.3",
+    "exit-hook": "3.2.0",
     "fs-extra": "11.1.1",
     "prettier": "2.8.8",
     "proper-lockfile": "4.1.2",
