@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import vm from "node:vm";
 import {z} from "zod";
 import {CollectionTypes} from "@contly/core:types";
-import {fileRead, pathExistsMulti} from "../../lib/utils.js";
+import {fileRead, pathExistsMulti} from "../../lib/fs.js";
 import {ConfigPaths, getPaths} from "./paths.js";
 import {Config, ConfigFn, zodConfig} from "./types.js";
 

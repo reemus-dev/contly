@@ -1,6 +1,13 @@
 import {GrayMatterFile} from "gray-matter";
 import {CollectionSchemas, CollectionTypes} from "@contly/core:types";
 
+/* Meta types */
+export type FileNameInfo = {
+  ext: string;
+  base: string;
+  full: string;
+};
+
 /* File types */
 export type HeadingDepth = {
   actual: number;
@@ -25,7 +32,7 @@ export type CollectionFileShape<K extends CollectionTypes> = {
   meta: CollectionMetadata<K>;
   matter: CollectionMatter;
   file: {
-    name: string;
+    name: FileNameInfo;
     path: string;
   };
   headings: {

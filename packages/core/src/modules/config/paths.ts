@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import {consts} from "../../consts.js";
-import {pathResolve} from "../../lib/utils.js";
+import {pathResolve} from "../../lib/fs.js";
 
 export const getWorkingDir = async () => {
   const cwd = process.cwd();

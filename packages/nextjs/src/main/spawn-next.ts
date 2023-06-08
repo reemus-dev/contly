@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import exitHook from "exit-hook";
 import fs from "fs-extra";
 import child from "node:child_process";
 import os from "node:os";
@@ -30,6 +31,9 @@ export const spawnNext = async (params: {cwd: string; args: string[]}): Promise<
 
   return new Promise((resolve, reject) => {
     const proc = child.spawn(bin.path, args, {cwd, stdio: "inherit"});
+
+    exitHook(() => proc.kill(9));
+
     proc.on("error", (err) => {
       console.error(`Next.js error:`, err);
     });

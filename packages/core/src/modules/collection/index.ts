@@ -1,8 +1,10 @@
 import fs from "fs-extra";
+import {globby} from "globby";
 import path from "node:path";
-import {pathResolve} from "../../lib/utils.js";
+import {pathResolve} from "../../lib/fs.js";
 import {CollectionTypes} from "../../types.js";
 import {getConfig} from "../config/config.js";
+import {getWorkingDir} from "../config/paths.js";
 import {CollectionFile} from "../file/index.js";
 
 // const getDirectory = async <T extends Input>(params: T) => {
@@ -13,21 +15,25 @@ const getDirectory = async <T extends CollectionTypes>(type: T) => {
 };
 
 // const getFileNames = async <T extends Input>(params: T) => {
-const getFileNames = async <T extends CollectionTypes>(type: T) => {
+const getRelativeFilePaths = async <T extends CollectionTypes>(type: T) => {
   // const {type} = params;
   const dir = await getDirectory(type);
-  const fileNames = await fs.readdir(dir);
-  return {dir, fileNames};
+  const filePaths = await globby("**/*.mdx", {
+    cwd: dir,
+    onlyFiles: true,
+    absolute: false,
+  });
+  return {dir, filePaths};
 };
 
 // const getCollection = async <T extends Union.Strict<Input>>(params: T) => {
 const all = async <T extends CollectionTypes>(type: T) => {
   // const {type} = params;
-  const {dir, fileNames} = await getFileNames(type);
+  const {dir, filePaths} = await getRelativeFilePaths(type);
   return await Promise.all(
-    fileNames.map(async (fileName) => {
-      const filePath = pathResolve(dir, fileName);
-      return CollectionFile.parse({type, filePath, fileName});
+    filePaths.map(async (filePath) => {
+      const filePathAbs = pathResolve(dir, filePath);
+      return CollectionFile.parse({type, filePathAbs});
     })
   );
 };
@@ -46,4 +52,4 @@ const get = async <T extends {type: CollectionTypes; slug: string}>(params: T) =
   return file || null;
 };
 
-export const Collection = {getDirectory, getFileNames, all, get, slugs};
+export const Collection = {getDirectory, getRelativeFilePaths, all, get, slugs};
