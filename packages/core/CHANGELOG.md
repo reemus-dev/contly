@@ -1,5 +1,13 @@
 # @contly/core
 
+## 0.1.12
+
+### Patch Changes
+
+- 7fa9930: better nextjs runner for linux, support for nested content directories
+- Updated dependencies [7fa9930]
+  - @contly/core-compat@0.1.12
+
 ## 0.1.11
 
 ### Patch Changes
